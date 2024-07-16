@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "autores")
@@ -73,12 +74,14 @@ public class Autor {
         return """
                 *** Autor ***
                 Nome: %s
-                Ano de nascimento: %s,
+                Ano de nascimento: %s
                 Ano de falecimento: %s
+                Livros: %s
                 """.formatted(
                 nome,
                 anoDeNascimento,
-                anoDeFalecimento
+                anoDeFalecimento,
+                livros.stream().map(Livro::getTitulo).collect(Collectors.joining(", "))
         );
     }
 }
