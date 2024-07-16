@@ -132,7 +132,7 @@ public class Principal {
                     Deseja buscar livros em qual idioma?
                     de- Alemão
                     es- Espanhol
-                    en- Ingês
+                    en- Inglês
                     it- Italiano
                     pt- Português
                     """;
