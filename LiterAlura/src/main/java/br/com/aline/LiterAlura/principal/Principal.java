@@ -30,7 +30,6 @@ public class Principal {
         var opcao = -1;
         while(opcao != 0){
             var MenuOpcoes = """
-                    
                     *** Catálogo de livros LiterAlura ***
                     
                     1- Buscar livro pelo título
@@ -129,12 +128,24 @@ public class Principal {
     }
 
     private void listarLivrosEmUmIdioma() {
-        System.out.println("Deseja buscar livros em qual idioma? ");
+        var menuIdioma = """
+                    Deseja buscar livros em qual idioma?
+                    de- Alemão
+                    es- Espanhol
+                    en- Ingês
+                    it- Italiano
+                    pt- Português
+                    """;
+        System.out.println(menuIdioma);
         var nomeIdioma = leitura.nextLine();
-        Idioma idioma = Idioma.fromPortugues(nomeIdioma);
+        Idioma idioma = Idioma.fromCodigo(nomeIdioma);
         List<Livro> livrosPorIdioma = livroRepository.findByIdiomasContaining(idioma);
-        System.out.println("Livros em " + nomeIdioma);
-        livrosPorIdioma.forEach(System.out::println);
+        if(!livrosPorIdioma.isEmpty()){
+            System.out.println("Livros em " + idioma);
+            livrosPorIdioma.forEach(System.out::println);
+        }else{
+            System.out.println("Não foram encontrados livros neste idioma.");
+        }
     }
 
     private DadosLivroApi getDadosLivros() {
